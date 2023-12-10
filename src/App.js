@@ -56,7 +56,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const KEY = "c9b89e1e";
+  const APIKEY = "c9b89e1e";
   const movieName = "inception";
 
   useEffect(function () {
@@ -64,7 +64,7 @@ export default function App() {
       try {
         setIsLoading(true);
         const res = await fetch(
-          `https://www.omdbapi.com/?s=${movieName}&apikey=${KEY}`
+          `https://www.omdbapi.com/?s=${movieName}&apikey=${APIKEY}`
         );
 
         if (!res.ok)
