@@ -57,7 +57,7 @@ export default function App() {
   const [error, setError] = useState("");
 
   const KEY = "c9b89e1e";
-  const movieName = "inception";
+  const movieName = "kdjfkadn";
 
   useEffect(function () {
     async function fetchMovies() {
