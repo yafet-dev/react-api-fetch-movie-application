@@ -71,7 +71,8 @@ export default function App() {
           throw new Error("something went wrong with fetching movies");
         const data = await res.json();
 
-        if (data.Response === "False") throw new Error("Movie not found");
+        if (data.Response === "False")
+          throw new Error("Movie not found in the database");
         console.log(data);
         setMovies(data.Search);
         setIsLoading(false);
