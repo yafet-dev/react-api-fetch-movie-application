@@ -1,4 +1,4 @@
-import { Children, useState } from "react";
+import { useEffect, useState } from "react";
 
 const tempMovieData = [
   {
@@ -53,6 +53,15 @@ const average = (arr) =>
 export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
+
+  const KEY = "c9b89e1e";
+
+  useEffect(function () {
+    fetch(`https://www.omdbapi.com/?s=fire&apikey=${KEY}`)
+      .then((res) => res.json())
+      .then((data) => setMovies(data.Search));
+  });
+
   return (
     <>
       <NavBar>
