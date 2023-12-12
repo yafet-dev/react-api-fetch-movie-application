@@ -57,7 +57,7 @@ export default function App() {
   const KEY = "c9b89e1e";
 
   useEffect(function () {
-    fetch(`https://www.omdbapi.com/?s=fire&apikey=${KEY}`)
+    fetch(`https://www.omdbapi.com/?s=inception&apikey=${KEY}`)
       .then((res) => res.json())
       .then((data) => setMovies(data.Search));
   });
