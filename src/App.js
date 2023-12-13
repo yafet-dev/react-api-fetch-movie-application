@@ -55,9 +55,10 @@ export default function App() {
   const [watched, setWatched] = useState(tempWatchedData);
 
   const KEY = "c9b89e1e";
+  const moveiName = "inception";
 
   useEffect(function () {
-    fetch(`https://www.omdbapi.com/?s=inception&apikey=${KEY}`)
+    fetch(`https://www.omdbapi.com/?s=${moveiName}&apikey=${KEY}`)
       .then((res) => res.json())
       .then((data) => setMovies(data.Search));
   });
