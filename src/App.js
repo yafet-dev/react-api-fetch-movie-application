@@ -326,6 +326,7 @@ function MovieDetails({ selectedId, onCloseMovie }) {
     Director: director,
     Genre: genre,
   } = movie;
+  console.log(genre);
 
   useEffect(function () {
     async function getMovieDetails() {
