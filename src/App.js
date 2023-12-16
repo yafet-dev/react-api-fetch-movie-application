@@ -316,7 +316,7 @@ function MovieDetails({ selectedId, onCloseMovie }) {
   const [movie, setMovie] = useState({});
   const {
     TItle: title,
-    Year: year,
+    Year: ear,
     Poster: poster,
     Runtime: runtime,
     imdbRating: imdbrating,
