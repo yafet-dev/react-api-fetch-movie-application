@@ -55,16 +55,17 @@ export default function App() {
   const [watched, setWatched] = useState(tempWatchedData);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [query, setQuery] = useState("");
 
   const APIKEY = "c9b89e1e";
-  const movieName = "inception";
+  const tempQuery = "inception";
 
   useEffect(function () {
     async function fetchMovies() {
       try {
         setIsLoading(true);
         const res = await fetch(
-          `https://www.omdbapi.com/?s=${movieName}&apikey=${APIKEY}`
+          `https://www.omdbapi.com/?s=${tempQuery}&apikey=${APIKEY}`
         );
 
         if (!res.ok)
@@ -72,7 +73,6 @@ export default function App() {
         const data = await res.json();
 
         if (data.Response === "False") throw new Error("Movie not found");
-        console.log(data);
         setMovies(data.Search);
         setIsLoading(false);
       } catch (error) {
@@ -89,7 +89,7 @@ export default function App() {
     <>
       <NavBar>
         <Logo />
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </NavBar>
       <Main>
@@ -142,8 +142,7 @@ function Logo() {
   );
 }
 
-function Search() {
-  const [query, setQuery] = useState("");
+function Search({ query, setQuery }) {
   return (
     <input
       className="search"
