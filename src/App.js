@@ -47,6 +47,8 @@ const tempWatchedData = [
   },
 ];
 
+const APIKEY = "c9b89e1e";
+
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
@@ -57,8 +59,6 @@ export default function App() {
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
-
-  const APIKEY = "c9b89e1e";
 
   useEffect(
     function () {
@@ -76,7 +76,6 @@ export default function App() {
 
           if (data.Response === "False") throw new Error("Movie not found");
           setMovies(data.Search);
-          console.log(data.Search);
           setIsLoading(false);
         } catch (error) {
           console.error(error.message);
@@ -290,7 +289,7 @@ function WatchedSummary({ watched }) {
 
 function MovieList({ movies, onSelectMovie }) {
   return (
-    <ul className="list">
+    <ul className="list list-movies">
       {movies?.map((movie) => (
         <Movie movie={movie} key={movie.imdbID} onSelectMovie={onSelectMovie} />
       ))}
@@ -314,11 +313,46 @@ function Movie({ movie, onSelectMovie }) {
 }
 
 function MovieDetails({ selectedId, onCloseMovie }) {
+  const [movie, setMovie] = useState({});
+  const {
+    TItle: title,
+    Year: year,
+    Poster: poster,
+    Runtime: runtime,
+    imdbRating: imdbrating,
+    Plot: plot,
+    Released: released,
+    Actors: actors,
+    Director: director,
+    Genre: genre,
+  } = movie;
+
+  useEffect(function () {
+    async function getMovieDetails() {
+      const res = await fetch(
+        `https://www.omdbapi.com/?i=${selectedId}&apikey=${APIKEY}`
+      );
+
+      const data = await res.json();
+      setMovie(data);
+    }
+    getMovieDetails();
+  }, []);
+
   return (
-    <div>
-      <button className="btn-black" onClick={onCloseMovie}>
-        &larr;
-      </button>
+    <div className="details">
+      <header>
+        <button className="btn-back" onClick={onCloseMovie}>
+          &larr;
+        </button>
+        <img src={poster} alt={`poster of ${movie}`} />
+        <div className="details-overview">
+          <h2>{title}</h2>
+          <p>
+            {released} &bull; {runtime}
+          </p>
+        </div>
+      </header>
       {selectedId}
     </div>
   );
