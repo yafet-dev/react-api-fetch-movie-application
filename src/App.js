@@ -414,7 +414,9 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
                   )}
                 </>
               ) : (
-                <p>You rated with movie {watchedUserRating}</p>
+                <p>
+                  You rated with movie <span>{watchedUserRating}</span>
+                </p>
               )}
             </div>
             <p>
