@@ -388,14 +388,17 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     onCloseMovie();
   }
 
-  useEffect(function () {
-    document.addEventListener("keydown", function (e) {
-      if (e.code === "Escape") {
-        onCloseMovie();
-        console.log("closing");
-      }
-    });
-  });
+  useEffect(
+    function () {
+      document.addEventListener("keydown", function (e) {
+        if (e.code === "Escape") {
+          onCloseMovie();
+          console.log("closing");
+        }
+      });
+    },
+    [onCloseMovie]
+  );
 
   useEffect(
     function () {
