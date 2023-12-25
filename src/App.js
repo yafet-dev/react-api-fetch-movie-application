@@ -93,7 +93,7 @@ export default function App() {
           setIsLoading(false);
         } catch (error) {
           console.error(error.message);
-          if (error.name !== "AbortError") {
+          if (error.name !== "AbortErro") {
             setError(error.message);
           }
         } finally {
