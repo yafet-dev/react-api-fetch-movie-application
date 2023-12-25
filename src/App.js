@@ -63,7 +63,8 @@ export default function App() {
 
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
-    console.log(watched);
+
+    localStorage.setItem("watched", JSON.stringify([...watched, movie]));
   }
 
   function handleDeleteWatched(id) {
@@ -93,7 +94,7 @@ export default function App() {
           setIsLoading(false);
         } catch (error) {
           console.error(error.message);
-          if (error.name !== "AbortErro") {
+          if (error.name !== "AbortError") {
             setError(error.message);
           }
         } finally {
